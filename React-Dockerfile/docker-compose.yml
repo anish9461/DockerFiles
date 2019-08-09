@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  # api:
+  #   build:
+  #     context: ./api
+  #     dockerfile: DevDockerfile
+  #   volumes:
+  #     - ./api:/usr/src/api
+  #   ports:
+  #     # machine:container
+  #     - 3001:3000
+  #   command: /bin/sh -c "yarn && yarn start"
+  #   env_file:
+  #     - ./env/dev.env
+  #   links:
+  #     - devdb 
+  
+  # devdb:
+  #   image: mongo:4
+  #   restart: always
+  #   volumes:
+  #     - mongo:/data/db
+  #   ports:
+  #     - 27777:27017    
+
+  custom-portal:
+    build:
+      context: ./custom-portal 
+      dockerfile: Dockerfile   
+    #working_dir: /usr/src/web
+    volumes:
+      - ./custom-portal:/usr/src/web
+    ports:
+      - 3002:3000
+    command: /bin/sh -c "yarn start"
+
+# volumes:
+#   mongo: {}          
